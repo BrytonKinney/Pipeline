@@ -1,7 +1,7 @@
 .vscode/*
-Pipeline.FrontEnd/bin
+*/bin
 Pipeline.FrontEnd/node_modules
-Pipeline.FrontEnd/obj
+*/obj
 Pipeline.FrontEnd/Data/Migrations
 Pipeline.FrontEnd/app.db
 !.vscode/settings.json
