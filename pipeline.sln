@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29209.152
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pipeline.BackEnd", "Pipeline.BackEnd\Pipeline.BackEnd.csproj", "{04B43FE5-031E-4FA1-8751-743C89405159}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pipeline.BackEnd", "Pipeline.BackEnd\Pipeline.BackEnd.csproj", "{04B43FE5-031E-4FA1-8751-743C89405159}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pipeline.FrontEnd", "Pipeline.FrontEnd\Pipeline.FrontEnd.csproj", "{E54AD2AB-E838-4F5E-B118-CD35DBD4C071}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pipeline.FrontEnd", "Pipeline.FrontEnd\Pipeline.FrontEnd.csproj", "{E54AD2AB-E838-4F5E-B118-CD35DBD4C071}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pipeline.Services", "Pipeline.Services\Pipeline.Services.csproj", "{BB467399-FA5A-4479-BE51-5552372F42DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pipeline.Shared", "Pipeline.Shared\Pipeline.Shared.csproj", "{CA80342F-32C2-4E5F-B20B-5351F3823890}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{04B43FE5-031E-4FA1-8751-743C89405159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -44,5 +45,35 @@ Global
 		{E54AD2AB-E838-4F5E-B118-CD35DBD4C071}.Release|x64.Build.0 = Release|Any CPU
 		{E54AD2AB-E838-4F5E-B118-CD35DBD4C071}.Release|x86.ActiveCfg = Release|Any CPU
 		{E54AD2AB-E838-4F5E-B118-CD35DBD4C071}.Release|x86.Build.0 = Release|Any CPU
+		{BB467399-FA5A-4479-BE51-5552372F42DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB467399-FA5A-4479-BE51-5552372F42DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB467399-FA5A-4479-BE51-5552372F42DB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BB467399-FA5A-4479-BE51-5552372F42DB}.Debug|x64.Build.0 = Debug|Any CPU
+		{BB467399-FA5A-4479-BE51-5552372F42DB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BB467399-FA5A-4479-BE51-5552372F42DB}.Debug|x86.Build.0 = Debug|Any CPU
+		{BB467399-FA5A-4479-BE51-5552372F42DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB467399-FA5A-4479-BE51-5552372F42DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB467399-FA5A-4479-BE51-5552372F42DB}.Release|x64.ActiveCfg = Release|Any CPU
+		{BB467399-FA5A-4479-BE51-5552372F42DB}.Release|x64.Build.0 = Release|Any CPU
+		{BB467399-FA5A-4479-BE51-5552372F42DB}.Release|x86.ActiveCfg = Release|Any CPU
+		{BB467399-FA5A-4479-BE51-5552372F42DB}.Release|x86.Build.0 = Release|Any CPU
+		{CA80342F-32C2-4E5F-B20B-5351F3823890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA80342F-32C2-4E5F-B20B-5351F3823890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA80342F-32C2-4E5F-B20B-5351F3823890}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CA80342F-32C2-4E5F-B20B-5351F3823890}.Debug|x64.Build.0 = Debug|Any CPU
+		{CA80342F-32C2-4E5F-B20B-5351F3823890}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CA80342F-32C2-4E5F-B20B-5351F3823890}.Debug|x86.Build.0 = Debug|Any CPU
+		{CA80342F-32C2-4E5F-B20B-5351F3823890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA80342F-32C2-4E5F-B20B-5351F3823890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA80342F-32C2-4E5F-B20B-5351F3823890}.Release|x64.ActiveCfg = Release|Any CPU
+		{CA80342F-32C2-4E5F-B20B-5351F3823890}.Release|x64.Build.0 = Release|Any CPU
+		{CA80342F-32C2-4E5F-B20B-5351F3823890}.Release|x86.ActiveCfg = Release|Any CPU
+		{CA80342F-32C2-4E5F-B20B-5351F3823890}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {169CA457-EAF0-4316-9D3D-7EABB2E77F58}
 	EndGlobalSection
 EndGlobal

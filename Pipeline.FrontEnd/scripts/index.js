@@ -5,6 +5,6 @@ var index = new Vue({
     components: {
         builds: builds
     },
-    template: "<builds/>"
+    template: "\n    <div>\n        <builds />\n    </div>"
 });
 //# sourceMappingURL=index.js.map
