@@ -1,19 +1,35 @@
 {
+  "name": "pipeline.front-end.vue",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "description": "Pipeline.FrontEnd.Vue",
+  "author": {
+    "name": ""
+  },
   "dependencies": {
-    "vue": "2.6.10"
+    "vue": "2.5.17",
+    "vue-class-component": "6.0.0",
+    "vue-property-decorator": "7.0.0"
   },
   "devDependencies": {
-    "css-loader": "^3.2.0",
-    "ts-loader": "^6.1.0",
-    "typescript": "^3.6.3",
-    "vue": "^2.6.10",
-    "vue-loader": "^15.7.1",
-    "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.8"
+    "@vue/cli-plugin-babel": "3.0.4",
+    "@vue/cli-plugin-typescript": "3.0.4",
+    "@vue/cli-service": "3.0.4",
+    "typescript": "3.1.1",
+    "vue-template-compiler": "2.5.17"
   },
-  "scripts": {
-    "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
