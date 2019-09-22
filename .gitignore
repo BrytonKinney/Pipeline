@@ -1,7 +1,7 @@
 .vscode/*
 .vs/
 !Pipeline.FrontEnd/dist/build.js
-Pipeline.FrontEnd/dist/
+Pipeline.FrontEnd/dist
 Pipeline.FrontEnd/node_modules
 Pipeline.FrontEnd/Data/Migrations/**
 Pipeline.FrontEnd/app.db
