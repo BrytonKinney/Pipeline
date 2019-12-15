@@ -6,10 +6,12 @@ namespace Pipeline.RepositoryManagement.Processing.Configuration.Processes
     {
         private const string _bashPath = "/usr/bin/bash";
         private readonly RepositoryManagementConfiguration _pipelineConfiguration;
+
         public ProcessFinder(RepositoryManagementConfiguration pipelineConfiguration)
         {
             _pipelineConfiguration = pipelineConfiguration;
         }
+
         public System.Diagnostics.Process GetShell()
         {
             if (!string.IsNullOrWhiteSpace(_pipelineConfiguration.DefaultShellPath))
@@ -28,15 +30,17 @@ namespace Pipeline.RepositoryManagement.Processing.Configuration.Processes
             }
         }
 
-        public System.Diagnostics.Process GetProcess(string processPath)
+        public System.Diagnostics.Process GetProcess(string processPath, params string[] arguments)
         {
             var proc = new System.Diagnostics.Process();
+            string args = arguments == null ? string.Join(' ', arguments) : string.Empty;
             proc.StartInfo = new System.Diagnostics.ProcessStartInfo(processPath)
             {
                 UseShellExecute = false,
                 RedirectStandardInput = true,
                 RedirectStandardError = true,
-                RedirectStandardOutput = true
+                RedirectStandardOutput = true,
+                Arguments = args
             };
             return proc;
         }

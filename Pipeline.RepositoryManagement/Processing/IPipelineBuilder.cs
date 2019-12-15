@@ -1,7 +1,9 @@
+using System.Threading.Tasks;
+
 namespace Pipeline.RepositoryManagement.Processing
 {
     public interface IPipelineBuilder
     {
-        void BuildProject();
+        Task<PipelineBuilder> BuildProject();
     }
 }

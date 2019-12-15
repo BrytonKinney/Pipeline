@@ -1,7 +1,8 @@
 using NUnit.Framework;
-using System.Threading.Tasks;
 using Pipeline.RepositoryManagement.Processing.Configuration;
-namespace Pipeline.Tests.RepoManagement
+using Pipeline.RepositoryManagement.Processing.Configuration.FileReaders;
+using System.Threading.Tasks;
+namespace Pipeline.Tests.RepositoryManagement.Configuration
 {
     [TestFixture]
     public class ConfigurationFileReaderTests
@@ -23,6 +24,15 @@ namespace Pipeline.Tests.RepoManagement
             Assert.IsNotNull(result, "YAML RepositoryManagementConfiguration was null.");
             Assert.IsNotNull(result.Workspace, "YAML Workspace was null.");
             Assert.IsNotNull(result.DefaultShellPath);
+        }
+
+        [Test]
+        public async Task JsonConfigurationFileReader_ReadInValidRepoManJsonCfg_Pass()
+        {
+            var json = new JsonConfigurationFileReader<BuildConfiguration>();
+            var result = await json.ReadConfigurationAsync(PipeTestHelper.GetFilePath("ExampleFiles/buildCfg1.json"));
+            Assert.IsNotNull(result, "YAML BuildConfiguration was null.");
+            Assert.IsNotNull(result.Stages, "YAML Stages was null.");
         }
     }
 }

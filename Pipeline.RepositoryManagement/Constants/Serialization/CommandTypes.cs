@@ -1,4 +1,4 @@
-namespace Pipeline.RepositoryManagement.Constants
+namespace Pipeline.RepositoryManagement.Constants.Serialization
 {
     public static class CommandTypes
     {

@@ -9,12 +9,14 @@ namespace Pipeline.RepositoryManagement.Processing.Configuration
     public class YamlConfigurationFileReader<TConfiguration> : IConfigurationFileReader<TConfiguration>
     {
         private readonly IDeserializer _deserializer;
+
         public YamlConfigurationFileReader()
         {
             _deserializer = new DeserializerBuilder()
                                     .WithNamingConvention(CamelCaseNamingConvention.Instance)
                                     .Build();
         }
+
         public async Task<TConfiguration> ReadConfigurationAsync(string filePath)
         {
             StringBuilder configuration = new StringBuilder(4096 * 2);

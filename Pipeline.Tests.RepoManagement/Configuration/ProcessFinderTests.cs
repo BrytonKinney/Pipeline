@@ -1,10 +1,9 @@
 ﻿using NUnit.Framework;
+using Pipeline.RepositoryManagement.Processing.Configuration;
 using Pipeline.RepositoryManagement.Processing.Configuration.Processes;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Pipeline.Tests.RepoManagement.Configuration
+namespace Pipeline.Tests.RepositoryManagement.Configuration
 {
     [TestFixture]
     public class ProcessFinderTests
@@ -12,7 +11,7 @@ namespace Pipeline.Tests.RepoManagement.Configuration
         [Test]
         public void ProcessFinderTests_NoDefaultShellPath_ReturnsDefaultPlatformSpecificShell()
         {
-            var procFinder = new ProcessFinder(new RepositoryManagement.Processing.Configuration.RepositoryManagementConfiguration());
+            var procFinder = new ProcessFinder(new RepositoryManagementConfiguration());
             using (var shell = procFinder.GetShell())
             {
                 shell.Start();

@@ -9,4 +9,11 @@ stages:
         name: Run
         order: 2
         type: shell
+      - executionInstructions: "C:\\Windows\\System32\\cmd.exe"
+        name: Cmd
+        order: 3
+        type: process
+        arguments:
+            - echo
+            - process test
     name: Build

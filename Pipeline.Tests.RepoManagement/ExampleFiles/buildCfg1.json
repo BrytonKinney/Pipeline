@@ -1,0 +1,21 @@
+{
+  "stages": [
+    {
+      "name": "Build",
+      "commands": [
+        {
+          "executionInstructions": "dotnet build",
+          "name": "Build",
+          "order": 1,
+          "type": "shell"
+        },
+        {
+          "executionInstructions": "dotnet run",
+          "name": "Run",
+          "order": 2,
+          "type": "shell"
+        }
+      ]
+    }
+  ]
+}

@@ -3,6 +3,6 @@ namespace Pipeline.RepositoryManagement.Processing.Configuration.ExecutionEngine
 {
     public interface IExecutionEngine
     {
-        Task<string> ExecuteCommandAsync(Command command);
+        Task ExecuteCommandAsync(Command command);
     }
 }

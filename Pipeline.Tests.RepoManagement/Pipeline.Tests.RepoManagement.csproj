@@ -1,31 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-
-    <IsPackable>false</IsPackable>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="ExampleFiles\pipelineCfg1_Linux.yaml" />
-    <None Remove="ExampleFiles\pipelineCfg1_Windows.yaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Moq" Version="4.13.1" />
-    <PackageReference Include="nunit" Version="3.12.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Pipeline.RepositoryManagement\Pipeline.RepositoryManagement.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="ExampleFiles/buildCfg1.yaml" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="ExampleFiles\pipelineCfg1_Windows.yaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-      <Content Include="ExampleFiles\pipelineCfg1_Linux.yaml" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
 </Project>
