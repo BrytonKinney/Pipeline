@@ -7,10 +7,12 @@ namespace Pipeline.RepositoryManagement.Processing.Configuration.ExecutionEngine
     public class ShellExecutionEngine : IExecutionEngine
     {
         private IProcessFinder _shellProcessFinder;
+
         public ShellExecutionEngine(IProcessFinder procFinder)
         {
             _shellProcessFinder = procFinder;
         }
+
         public async Task<string> ExecuteCommandAsync(Command command)
         {
             var output = new System.Text.StringBuilder(4096 * 10);

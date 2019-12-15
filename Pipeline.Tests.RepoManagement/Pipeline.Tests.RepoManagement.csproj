@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ExampleFiles\pipelineCfg1_Linux.yaml" />
+    <None Remove="ExampleFiles\pipelineCfg1_Windows.yaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Moq" Version="4.13.1" />
     <PackageReference Include="nunit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
@@ -18,6 +23,9 @@
 
   <ItemGroup>
     <Content Include="ExampleFiles/buildCfg1.yaml" CopyToOutputDirectory="PreserveNewest" />
-      <Content Include="ExampleFiles/pipelineCfg1.yaml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="ExampleFiles\pipelineCfg1_Windows.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+      <Content Include="ExampleFiles\pipelineCfg1_Linux.yaml" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>
