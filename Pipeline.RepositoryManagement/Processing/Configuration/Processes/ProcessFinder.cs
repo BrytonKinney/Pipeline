@@ -10,16 +10,16 @@ namespace Pipeline.RepositoryManagement.Processing.Configuration.Processes
         {
             _pipelineConfiguration = pipelineConfiguration;
         }
-        public System.Diagnostics.Process GetShell()
+        public System.Diagnostics.Process GetShell(string workingDirectory)
         {
             if (!string.IsNullOrWhiteSpace(_pipelineConfiguration.DefaultShellPath))
-                return GetProcess(_pipelineConfiguration.DefaultShellPath);
+                return GetProcess(_pipelineConfiguration.DefaultShellPath, workingDirectory);
             else
             {
                 switch (System.Environment.OSVersion.Platform)
                 {
                     case System.PlatformID.Unix:
-                        return GetProcess("/bin/bash");
+                        return GetProcess("/bin/bash", workingDirectory);
                     case System.PlatformID.Win32NT:
                         return GetProcess(System.Environment.GetFolderPath(System.Environment.SpecialFolder.System), "cmd.exe");
                     default:
@@ -28,18 +28,19 @@ namespace Pipeline.RepositoryManagement.Processing.Configuration.Processes
             }
         }
 
-        public System.Diagnostics.Process GetProcess(string processPath, params string[] arguments)
+        public System.Diagnostics.Process GetProcess(string processPath, string workingDirectory, params string[] arguments)
         {
-            var proc = new System.Diagnostics.Process();
-            string args = arguments == null ? string.Join(' ', arguments) : string.Empty;
-            proc.StartInfo = new System.Diagnostics.ProcessStartInfo(Path.GetFileName(processPath))
+            var proc = new System.Diagnostics.Process() { EnableRaisingEvents = true };
+            string args = arguments != null && arguments.Length > 0 ? string.Join(' ', arguments) : string.Empty;
+            System.Console.WriteLine("Executing {0} with arguments: {1}", Path.GetFileName(processPath), args);
+            proc.StartInfo = new System.Diagnostics.ProcessStartInfo(processPath)
             {
                 UseShellExecute = false,
                 RedirectStandardInput = true,
                 RedirectStandardError = true,
                 RedirectStandardOutput = true,
                 Arguments = args,
-                WorkingDirectory = Path.GetDirectoryName(processPath)
+                WorkingDirectory = workingDirectory
             };
             return proc;
         }

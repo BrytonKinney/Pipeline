@@ -1,25 +1,29 @@
+using System;
 using System.Threading.Tasks;
-using RME = Pipeline.RepositoryManagement.Entities;
-using RMPC = Pipeline.RepositoryManagement.Processing.Configuration;
+using Entities = Pipeline.RepositoryManagement.Entities;
+using Configuration = Pipeline.RepositoryManagement.Processing.Configuration;
+using ProcessingEvents = Pipeline.RepositoryManagement.Processing.Events;
 namespace Pipeline.RepositoryManagement.Processing
 {
     public class PipelineBuilder : IPipelineBuilder
     {
-        private RME.Project _project;
-        private RMPC.RepositoryManagementConfiguration _cfg;
-        private RMPC.ExecutionEngines.ProcessExecutionEngine _procExecEngine;
+        private Entities.Project _project;
+        private Configuration.RepositoryManagementConfiguration _cfg;
+        private Configuration.ExecutionEngines.ProcessExecutionEngine _procExecEngine;
 
-        public PipelineBuilder(RMPC.RepositoryManagementConfiguration cfg)
+        public PipelineBuilder(Configuration.RepositoryManagementConfiguration cfg)
         {
             _cfg = cfg;
+            _procExecEngine = new Processing.Configuration.ExecutionEngines.ProcessExecutionEngine(new Processing.Configuration.Processes.ProcessFinder(cfg));
+            _procExecEngine.OnProcessOutputReceived += ProcessOutputReceived;
         }
 
-        public PipelineBuilder(RME.Project project, RMPC.RepositoryManagementConfiguration cfg) : this(cfg)
+        public PipelineBuilder(Entities.Project project, Configuration.RepositoryManagementConfiguration cfg) : this(cfg)
         {
             _project = project;
         }
 
-        public PipelineBuilder SetProject(RME.Project project)
+        public PipelineBuilder SetProject(Entities.Project project)
         {
             _project = project;
             return this;
@@ -35,8 +39,15 @@ namespace Pipeline.RepositoryManagement.Processing
                 {
                     await _procExecEngine.ExecuteCommandAsync(cmd);
                 }
+                OnStageCompleted?.Invoke(this, new ProcessingEvents.EventArgs.StageCompletedEventArgs(stage));
             }
             return this;
         }
+        private void ProcessOutputReceived(object sender, ProcessingEvents.EventArgs.ProcessOutputEventArgs args)
+        {
+            OnProcessOutput?.Invoke(sender, args);
+        }
+        public EventHandler<ProcessingEvents.EventArgs.StageCompletedEventArgs> OnStageCompleted;
+        public EventHandler<ProcessingEvents.EventArgs.ProcessOutputEventArgs> OnProcessOutput;
     }
 }

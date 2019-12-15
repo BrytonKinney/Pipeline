@@ -6,7 +6,7 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace Pipeline.RepositoryManagement.Processing.Configuration
 {
-    public class YamlConfigurationFileReader<TConfiguration> : IConfigurationFileReader<TConfiguration>
+    public class YamlConfigurationFileReader<TConfiguration> : IConfigurationFileReader<TConfiguration> where TConfiguration : IPipelineConfiguration
     {
         private readonly IDeserializer _deserializer;
 
@@ -28,7 +28,9 @@ namespace Pipeline.RepositoryManagement.Processing.Configuration
                         configuration.AppendLine(await reader.ReadLineAsync());
                 }
             }
-            return _deserializer.Deserialize<TConfiguration>(configuration.ToString());
+            var cfg = _deserializer.Deserialize<TConfiguration>(configuration.ToString());
+            cfg.FileName = Path.GetFileName(filePath);
+            return cfg;
         }
     }
 }

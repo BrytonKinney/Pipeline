@@ -10,4 +10,9 @@ public static class PipeTestHelper
         string path = Uri.UnescapeDataString(uri.Path);
         return Path.Combine(Path.GetDirectoryName(path), relativePath);
     }
+
+    public static string GetSolutionPath()
+    {
+        return Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName);
+    }
 }

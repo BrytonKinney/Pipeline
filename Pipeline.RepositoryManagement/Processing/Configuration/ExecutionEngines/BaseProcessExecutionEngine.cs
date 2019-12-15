@@ -8,38 +8,52 @@ namespace Pipeline.RepositoryManagement.Processing.Configuration.ExecutionEngine
 {
     public abstract class BaseProcessExecutionEngine : IExecutionEngine
     {
-        public abstract Process GetProcess(CommandType commandType, string processPath);
-        public EventHandler<PipeEvents.EventArgs.ProcessOutputEventArgs> ProcessOutputReceived;
+        public abstract Process GetProcess(CommandType commandType, string processPath, string workingDirectoryPath, params string[] arguments);
+        public EventHandler<PipeEvents.EventArgs.ProcessOutputEventArgs> OnProcessOutputReceived { get; set; }
+        public EventHandler<PipeEvents.EventArgs.ProcessExitedEventArgs> OnExit { get; set; }
+
         public async Task ExecuteCommandAsync(Command command)
         {
             var output = new StringBuilder(4096 * 10);
             var cmdType = command.Type == Constants.Serialization.CommandTypes.Process ? CommandType.Process : CommandType.Shell;
-            using (var proc = GetProcess(cmdType, command.ExecutionInstructions))
+            using (var proc = GetProcess(cmdType, command.ExecutionInstructions, command.WorkingDirectory, command.Arguments))
             {
                 proc.OutputDataReceived += ProcessOutputDataReceived;
+                proc.Exited += ProcessExited;
+                proc.ErrorDataReceived += ProcessOutputDataReceived;
                 proc.Start();
-                using (var sr = proc.StandardOutput)
+                if (cmdType == CommandType.Shell)
                 {
-                    using (var sw = proc.StandardInput)
+                    using (var sr = proc.StandardOutput)
                     {
-                        if (cmdType == CommandType.Shell)
+                        using (var sw = proc.StandardInput)
                         {
+
+                            await sw.WriteLineAsync(string.Format("cd {0}", command.WorkingDirectory));
                             await sw.WriteLineAsync(command.ExecutionInstructions);
                             await sw.FlushAsync();
-                            ProcessOutputReceived?.Invoke(this, new PipeEvents.EventArgs.ProcessOutputEventArgs(await sr.ReadLineAsync()));
+                            var stdout = await sr.ReadLineAsync();
+                            System.Console.WriteLine(string.Format("Output received: {0}", stdout));
+                            OnProcessOutputReceived?.Invoke(this, new PipeEvents.EventArgs.ProcessOutputEventArgs(stdout));
                         }
-                        else
-                        {
-                            proc.BeginOutputReadLine();
-                            proc.WaitForExit();
-                        }
+
                     }
+                }
+                else
+                {
+                    proc.BeginOutputReadLine();
+                    proc.WaitForExit();
                 }
             }
         }
+        private void ProcessExited(object sender, System.EventArgs eventArgs)
+        {
+            var proc = sender as System.Diagnostics.Process;
+            OnExit?.Invoke(sender, new PipeEvents.EventArgs.ProcessExitedEventArgs(proc.ExitCode, proc.ExitTime));
+        }
         private void ProcessOutputDataReceived(object sender, DataReceivedEventArgs e)
         {
-            ProcessOutputReceived?.Invoke(sender, new PipeEvents.EventArgs.ProcessOutputEventArgs(e.Data));
+            OnProcessOutputReceived?.Invoke(sender, new PipeEvents.EventArgs.ProcessOutputEventArgs(e.Data));
         }
     }
 }

@@ -14,12 +14,12 @@ namespace Pipeline.RepositoryManagement.Processing.Configuration.ExecutionEngine
             _processFinder = processFinder;
         }
 
-        public override Process GetProcess(CommandType commandType, string processPath)
+        public override Process GetProcess(CommandType commandType, string processPath, string workingDirectoryPath, params string[] arguments)
         {
             if (commandType == CommandType.Process)
-                return _processFinder.GetProcess(processPath);
+                return _processFinder.GetProcess(processPath, workingDirectoryPath, arguments);
             else if (commandType == CommandType.Shell)
-                return _processFinder.GetShell();
+                return _processFinder.GetShell(workingDirectoryPath);
             throw new System.ArgumentException(nameof(commandType));
         }
     }

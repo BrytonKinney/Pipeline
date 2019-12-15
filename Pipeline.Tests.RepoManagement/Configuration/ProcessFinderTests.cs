@@ -12,7 +12,7 @@ namespace Pipeline.Tests.RepositoryManagement.Configuration
         public void ProcessFinderTests_NoDefaultShellPath_ReturnsDefaultPlatformSpecificShell()
         {
             var procFinder = new ProcessFinder(new RepositoryManagementConfiguration());
-            using (var shell = procFinder.GetShell())
+            using (var shell = procFinder.GetShell("./"))
             {
                 shell.Start();
                 if (System.Environment.OSVersion.Platform == PlatformID.Win32NT)

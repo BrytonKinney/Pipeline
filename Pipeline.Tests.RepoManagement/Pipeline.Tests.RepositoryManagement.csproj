@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="TestProject/**" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="ExampleFiles/buildCfg1.yaml" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="ExampleFiles\buildCfg1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -6,6 +6,7 @@ namespace Pipeline.RepositoryManagement.Processing.Configuration
         public int Order { get; set; }
         public string Name { get; set; }
         public string ExecutionInstructions { get; set; }
+        public string WorkingDirectory { get; set; }
         public string[] Arguments { get; set; }
     }
 }
